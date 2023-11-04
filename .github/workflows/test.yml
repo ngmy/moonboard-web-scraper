@@ -1,0 +1,45 @@
+name: Test
+
+on: [push, pull_request]
+
+jobs:
+  test:
+
+    runs-on: ubuntu-20.04
+
+    strategy:
+      fail-fast: false
+      matrix:
+        php: ['8.2']
+
+    name: PHP ${{ matrix.php }}
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - name: Set up PHP ${{ matrix.php }}
+        run: sudo update-alternatives --set php /usr/bin/php${{ matrix.php }}
+
+      - name: Update Composer to latest version
+        run: sudo composer self-update
+
+      - name: Validate composer.json
+        run: composer validate
+
+      - name: Install Composer dependencies
+        run: |
+          composer install --no-interaction
+
+      - name: Run tests
+        run: |
+          composer test-coverage
+
+      - name: Upload coverage results to Coveralls
+        env:
+          COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: nick-fields/retry@v2
+        with:
+          timeout_minutes: 10
+          max_attempts: 3
+          command: vendor-bin/php-coveralls/vendor/bin/php-coveralls --coverage_clover=build/logs/clover.xml

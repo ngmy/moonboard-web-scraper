@@ -1,0 +1,14 @@
+parameters:
+  level: max
+  paths:
+    - .
+    - .php-cs-fixer.dist.php
+  excludePaths:
+    - vendor
+    - vendor-bin
+  bootstrapFiles:
+    - vendor-bin/php-cs-fixer/vendor/autoload.php
+  treatPhpDocTypesAsCertain: false
+  reportUnmatchedIgnoredErrors: false
+
+# vim: set ft=yaml:

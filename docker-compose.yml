@@ -1,0 +1,16 @@
+version: "3.7"
+
+services:
+  app:
+    build:
+      context: ./docker/php
+      args:
+        UID: ${APP_UID}
+        GID: ${APP_GID}
+    tty: true
+    environment:
+      MOONBOARD_USERNAME: ${MOONBOARD_USERNAME}
+      MOONBOARD_PASSWORD: ${MOONBOARD_PASSWORD}
+    volumes:
+      - .:/var/www
+    working_dir: /var/www
