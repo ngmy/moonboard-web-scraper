@@ -38,6 +38,11 @@ class ScrapeBenchmarksAction
      */
     private function getProblemUrls(HoldSetup $holdSetup): array
     {
+        $this->logger->info('Scraping problem URLs...', [
+            'boardType' => $holdSetup->getBoardType()->getLabel(),
+            'boardAngle' => $holdSetup->getBoardAngle()->getLabel(),
+        ]);
+
         $this->client->request('GET', '/Dashboard/Index');
         $this->client->executeScript("$('#Holdsetup').val('".$holdSetup->getBoardType()->value."').change()");
         $this->client->executeScript("$('[data-id=\"".$holdSetup->getBoardAngle()->value."\"]').click()");
@@ -99,8 +104,11 @@ class ScrapeBenchmarksAction
     private function getProblemData(array $problemUrls): array
     {
         $problemData = [];
+        $problemUrlCount = \count($problemUrls);
 
-        foreach ($problemUrls as $problemUrl) {
+        foreach ($problemUrls as $i => $problemUrl) {
+            $this->logger->info('Scraping problem data... ('.($i + 1).'/'.$problemUrlCount.')', ['problemUrl' => $problemUrl]);
+
             $this->client->request('GET', $problemUrl);
 
             $crawler = $this->client->getCrawler();
@@ -136,6 +144,11 @@ class ScrapeBenchmarksAction
      */
     private function saveProblemData(array $problemData, HoldSetup $holdSetup): void
     {
+        $this->logger->info('Saving problem data...', [
+            'boardType' => $holdSetup->getBoardType()->getLabel(),
+            'boardAngle' => $holdSetup->getBoardAngle()->getLabel(),
+        ]);
+
         file_put_contents(
             sprintf('problems %s %s.json', $holdSetup->getBoardType()->getLabel(), $holdSetup->getBoardAngle()->getLabel()),
             json_encode($problemData, JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),

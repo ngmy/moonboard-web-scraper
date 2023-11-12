@@ -34,6 +34,7 @@ $application->add(new ScrapeBenchmarksCommand(
         authenticator: new Authenticator(
             username: getenv('MOONBOARD_USERNAME'),
             password: getenv('MOONBOARD_PASSWORD'),
+            logger: $logger,
         ),
         holdSetups: HoldSetups::all(),
         logger: $logger,
