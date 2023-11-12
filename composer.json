@@ -17,6 +17,7 @@
     "require": {
         "php": "^8.2",
         "ext-zip": "*",
+        "monolog/monolog": "^3.5",
         "symfony/console": "^6.3",
         "symfony/panther": "^2.1"
     },

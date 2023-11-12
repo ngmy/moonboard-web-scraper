@@ -7,6 +7,7 @@ namespace App\UseCases;
 use App\Models\HoldSetup;
 use App\Models\HoldSetups;
 use App\Services\Authenticator;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\Panther\Client;
 use Symfony\Component\Panther\DomCrawler\Crawler;
 
@@ -16,6 +17,7 @@ class ScrapeBenchmarksAction
         private readonly Client $client,
         private readonly Authenticator $authenticator,
         private readonly HoldSetups $holdSetups,
+        private LoggerInterface $logger,
     ) {}
 
     public function __invoke(): void
@@ -105,8 +107,20 @@ class ScrapeBenchmarksAction
 
             preg_match('/var problem = JSON\.parse\(\'(.*)\'\)/', $crawler->html(), $matches);
 
-            /** @var \stdClass $data */
-            $data = json_decode($matches[1], false, 512, JSON_THROW_ON_ERROR);
+            try {
+                /** @var \stdClass $data */
+                $data = json_decode($matches[1], false, 512, JSON_THROW_ON_ERROR);
+            } catch (\JsonException $e) {
+                $this->logger->warning('Skip scraping problem data because it is invalid.', ['problemUrl' => $problemUrl]);
+
+                continue;
+            }
+
+            if (null === $data) {
+                $this->logger->warning('Skip scraping problem data because it is null.', ['problemUrl' => $problemUrl]);
+
+                continue;
+            }
 
             $problemData[] = $data;
 
