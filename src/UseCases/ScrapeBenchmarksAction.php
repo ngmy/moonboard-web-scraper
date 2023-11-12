@@ -25,9 +25,9 @@ class ScrapeBenchmarksAction
         $this->authenticator->authenticate($this->client);
 
         foreach ($this->holdSetups as $holdSetup) {
-            $problemUrls = $this->getProblemUrls($holdSetup);
+            $problemUrls = $this->scrapeProblemUrls($holdSetup);
 
-            $problemData = $this->getProblemData($problemUrls);
+            $problemData = $this->scrapeProblemData($problemUrls);
 
             $this->saveProblemData($problemData, $holdSetup);
         }
@@ -36,7 +36,7 @@ class ScrapeBenchmarksAction
     /**
      * @return string[]
      */
-    private function getProblemUrls(HoldSetup $holdSetup): array
+    private function scrapeProblemUrls(HoldSetup $holdSetup): array
     {
         $this->logger->info('Scraping problem URLs...', [
             'boardType' => $holdSetup->getBoardType()->getLabel(),
@@ -101,7 +101,7 @@ class ScrapeBenchmarksAction
      *
      * @return \stdClass[]
      */
-    private function getProblemData(array $problemUrls): array
+    private function scrapeProblemData(array $problemUrls): array
     {
         $problemData = [];
         $problemUrlCount = \count($problemUrls);
