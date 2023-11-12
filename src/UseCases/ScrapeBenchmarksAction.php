@@ -105,7 +105,7 @@ class ScrapeBenchmarksAction
 
             $crawler = $this->client->getCrawler();
 
-            preg_match('/var problem = JSON\.parse\(\'(.*)\'\)/', $crawler->html(), $matches);
+            preg_match('/var problem = JSON\.parse\(\'(.*)\'\);/', $crawler->html(), $matches);
 
             try {
                 /** @var \stdClass $data */
