@@ -43,14 +43,7 @@ $application->add(new ScrapeBenchmarksCommand(
     ),
 ));
 $application->add(new ScrapeUserProfilesCommand(
-    new ScrapeUserProfilesAction(
-        client: $client,
-        authenticator: new Authenticator(
-            username: getenv('MOONBOARD_USERNAME'),
-            password: getenv('MOONBOARD_PASSWORD'),
-            logger: $logger,
-        ),
-        logger: $logger,
-    ),
+    client: $client,
+    logger: $logger,
 ));
 $application->run();

@@ -42,6 +42,12 @@ Run the `scrape-user-profiles` command and wait for JSON files of user profiles 
 bin/moonboard-web-scraper scrape-user-profiles
 ```
 
+You can also specify the user IDs to scrape by passing the `--user-ids-file` option:
+
+```bash
+bin/moonboard-web-scraper scrape-user-profiles --user-ids-file=user_ids.txt
+```
+
 ## Changelog
 
 Please see the [changelog](CHANGELOG.md).
