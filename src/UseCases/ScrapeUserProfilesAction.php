@@ -104,6 +104,7 @@ class ScrapeUserProfilesAction
             $totalProblemsClimbed = $matches[1];
 
             $userProfileData[] = (object) [
+                'Id' => explode('/', $userProfileUrl)[3],
                 'ProfileImageUrl' => $profileImageUrl,
                 'FirstName' => $firstName,
                 'LastName' => $lastName,

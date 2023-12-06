@@ -1,5 +1,9 @@
 # Release Notes
 
+## [0.5.0](https://github.com/ngmy/moonboard-web-search/compare/0.4.0...0.5.0) - 2023-12-06
+
+- Add a user ID to scraped data.
+
 ## [0.4.0](https://github.com/ngmy/moonboard-web-search/compare/0.3.0...0.4.0) - 2023-12-06
 
 - Skip scraping user profile data when it is private.
