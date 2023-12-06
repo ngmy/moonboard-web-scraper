@@ -19,6 +19,7 @@
         "ext-zip": "*",
         "monolog/monolog": "^3.5",
         "symfony/console": "^6.3",
+        "symfony/css-selector": "^7.0",
         "symfony/panther": "^2.1"
     },
     "require-dev": {

@@ -4,9 +4,11 @@
 require __DIR__ . '/../vendor/autoload.php';
 
 use App\Commands\ScrapeBenchmarksCommand;
+use App\Commands\ScrapeUserProfilesCommand;
 use App\Models\HoldSetups;
 use App\Services\Authenticator;
 use App\UseCases\ScrapeBenchmarksAction;
+use App\UseCases\ScrapeUserProfilesAction;
 use Monolog\Handler\StreamHandler;
 use Monolog\Level;
 use Monolog\Logger;
@@ -37,6 +39,17 @@ $application->add(new ScrapeBenchmarksCommand(
             logger: $logger,
         ),
         holdSetups: HoldSetups::all(),
+        logger: $logger,
+    ),
+));
+$application->add(new ScrapeUserProfilesCommand(
+    new ScrapeUserProfilesAction(
+        client: $client,
+        authenticator: new Authenticator(
+            username: getenv('MOONBOARD_USERNAME'),
+            password: getenv('MOONBOARD_PASSWORD'),
+            logger: $logger,
+        ),
         logger: $logger,
     ),
 ));
