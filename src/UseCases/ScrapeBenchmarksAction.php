@@ -17,7 +17,7 @@ class ScrapeBenchmarksAction
         private readonly Client $client,
         private readonly Authenticator $authenticator,
         private readonly HoldSetups $holdSetups,
-        private LoggerInterface $logger,
+        private readonly LoggerInterface $logger,
     ) {}
 
     public function __invoke(): void

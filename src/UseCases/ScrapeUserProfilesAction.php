@@ -15,7 +15,7 @@ class ScrapeUserProfilesAction
         private readonly Client $client,
         private readonly Authenticator $authenticator,
         private readonly UserProfileUrlsGeneratorInterface $userProfileUrlsGenerator,
-        private LoggerInterface $logger,
+        private readonly LoggerInterface $logger,
     ) {}
 
     public function __invoke(): void
