@@ -55,7 +55,7 @@ class ScrapeUserProfilesAction
             $this->client->request('GET', $userProfileUrl);
 
             // Since $this->client->getInternalResponse()->getStatusCode() returns 200, it is checked by title.
-            if ($this->client->getTitle() === '403 Forbidden') {
+            if ('403 Forbidden' === $this->client->getTitle()) {
                 $this->logger->warning('Skip scraping user profile data because the user profile is private.', ['userProfileUrl' => $userProfileUrl]);
 
                 continue;
