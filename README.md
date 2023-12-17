@@ -34,6 +34,14 @@ Run the `scrape-benchmarks` command and wait for JSON files of benchmarks to app
 bin/moonboard-web-scraper scrape-benchmarks
 ```
 
+### Scrape the logbook
+
+Run the `scrape-logbook` command and wait for JSON files of the logbook to appear:
+
+```bash
+bin/moonboard-web-scraper scrape-logbook
+```
+
 ### Scrape user profiles
 
 Run the `scrape-user-profiles` command and wait for JSON files of user profiles to appear:

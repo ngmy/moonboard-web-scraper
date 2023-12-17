@@ -1,5 +1,9 @@
 # Release Notes
 
+## [0.6.0](https://github.com/ngmy/moonboard-web-search/compare/0.5.0...0.6.0) - 2023-12-17
+
+- Add a command to scrape the logbook.
+
 ## [0.5.0](https://github.com/ngmy/moonboard-web-search/compare/0.4.0...0.5.0) - 2023-12-06
 
 - Add a user ID to scraped data.

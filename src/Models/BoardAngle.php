@@ -18,4 +18,14 @@ enum BoardAngle: int
             self::Degree40MoonBoard2016 => '',
         };
     }
+
+    public function isDegree40(): bool
+    {
+        return self::Degree40 === $this || self::Degree40MoonBoard2016 === $this;
+    }
+
+    public function isDegree25(): bool
+    {
+        return self::Degree25 === $this;
+    }
 }
