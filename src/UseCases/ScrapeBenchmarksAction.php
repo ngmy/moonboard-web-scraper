@@ -49,7 +49,7 @@ class ScrapeBenchmarksAction
 
         // From the DOM, it is impossible to determine that the hold setup has changed,
         // so we have to wait a certain amount of time.
-        sleep(3);
+        sleep(5);
 
         $crawler = $this->client->getCrawler();
 
@@ -90,7 +90,7 @@ class ScrapeBenchmarksAction
 
             // From the DOM, it is impossible to determine that the page has changed,
             // so we have to wait a certain amount of time.
-            sleep(3);
+            sleep(5);
         }
 
         return $problemUrls;
