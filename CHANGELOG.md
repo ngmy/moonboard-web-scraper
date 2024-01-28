@@ -1,5 +1,9 @@
 # Release Notes
 
+## [0.7.0](https://github.com/ngmy/moonboard-web-search/compare/0.6.0...0.7.0) - 2024-01-28
+
+- Change the sleep time of the `scrape-benchmarks` command to 5 seconds.
+
 ## [0.6.0](https://github.com/ngmy/moonboard-web-search/compare/0.5.0...0.6.0) - 2023-12-17
 
 - Add a command to scrape the logbook.
